@@ -2,7 +2,7 @@
 <project name="the project" default="deploy" basedir=".">
 
 	<property name="src.dir" location="src" />
-	<property name="bin.dir" location="${WORKSPACE}\bin" />
+	<property name="bin.dir" location="temp\bin" />
 	<property name="tomcat"     value="C:\Program Files\Apache Software Foundation\Tomcat 9.0"/>
 	<property name="tomcat.deploy"     value="C:\Program Files\Apache Software Foundation\Tomcat 9.0\webapps"/>
 	<property name="tomcat.bin"     value="C:\Program Files\Apache Software Foundation\Tomcat 9.0\bin"/>
