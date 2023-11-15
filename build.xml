@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<project name="the project" default="deploy" basedir=".">
+
+	<property name="src.dir" location="${WORKSPACE}\sources\src" />
+	<property name="bin.dir" location="${WORKSPACE}\bin" />
+	<property name="tomcat"     value="C:\Program Files\Apache Software Foundation\Tomcat 9.0"/>
+	<property name="tomcat.deploy"     value="C:\Program Files\Apache Software Foundation\Tomcat 9.0\webapps"/>
+	<property name="tomcat.bin"     value="C:\Program Files\Apache Software Foundation\Tomcat 9.0\bin"/>
+	
+	
+	<target name="init">
+		<!-- Create the time stamp -->
+		<tstamp />
+		<!-- Create the build directory structure used by compile -->
+		<mkdir dir="${bin.dir}" />
+	</target>
+
+
+	<target name="clean" description="remove intermediate files">
+		<delete dir="${bin.dir}" />
+	</target>
+	
+	<target name="copy" depends="clean,init" description="copy intermediate war files">
+		<copy todir="${bin.dir}">
+			<fileset dir="${src.dir}">
+				<include name="helloworld.war"/>
+				<include name="Lab6A.war"/>
+				<include name="Forms to be filled\*"/>
+			</fileset>
+		</copy>	
+	</target>
+	
+	<target name="zipwars" depends="copy" description="Zip intermediate files">	
+	<!--fileset dir="${src.dir}/Forms to be filled" excludes="${src.dir}/Forms/Gratuity Form.pdf"/-->
+		<zip destfile="${bin.dir}/wars.zip"
+		basedir="${bin.dir}"
+		excludes="${bin.dir}/Forms to be filled/1. Joining Report.pdf"/>
+	</target>
+	
+	<target name="deploy" depends="zipwars" description="Deploy war File to web application">
+		<copy file="${bin.dir}/Lab6A.war" todir="${tomcat.deploy}"/>
+		<antcall target="tomcatstop"/>
+		<antcall target="tomcatstart"/>
+	</target>
+	
+	
+	<target name="tomcatstart">
+		<exec executable="${tomcat.bin}/startup.bat">
+			<env key ="CATALINA_HOME" value="${tomcat}"/>
+		</exec>
+	</target>
+	
+	<target name="tomcatstop">
+		<exec executable="${tomcat.bin}/shutdown.bat">
+			<env key ="CATALINA_HOME" value="${tomcat}"/>
+		</exec>
+	</target>
+		
+	
+	</project>
