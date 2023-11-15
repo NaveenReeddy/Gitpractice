@@ -12,6 +12,7 @@
 		<!-- Create the time stamp -->
 		<tstamp />
 		<!-- Create the build directory structure used by compile -->
+		<mkdir dir="${src.dir}" />
 		<mkdir dir="${bin.dir}" />
 	</target>
 
