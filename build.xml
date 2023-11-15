@@ -31,14 +31,7 @@
 		</copy>	
 	</target>
 	
-	<target name="zipwars" depends="copy" description="Zip intermediate files">	
-	<!--fileset dir="${src.dir}/Forms to be filled" excludes="${src.dir}/Forms/Gratuity Form.pdf"/-->
-		<zip destfile="${bin.dir}/wars.zip"
-		basedir="${bin.dir}"
-		excludes="${bin.dir}/Forms to be filled/1. Joining Report.pdf"/>
-	</target>
-	
-	<target name="deploy" depends="zipwars" description="Deploy war File to web application">
+	<target name="deploy" depends="copy" description="Deploy war File to web application">
 		<copy file="${bin.dir}/Lab6A.war" todir="${tomcat.deploy}"/>
 		<antcall target="tomcatstop"/>
 		<antcall target="tomcatstart"/>
