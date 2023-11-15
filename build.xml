@@ -32,6 +32,7 @@
 	
 	<target name="deploy" depends="copy" description="Deploy war File to web application">
 		<copy file="${bin.dir}/Lab6A.war" todir="${tomcat.deploy}"/>
+		<copy file="${bin.dir}/helloworld.war" todir="${tomcat.deploy}"/>
 		<antcall target="tomcatstop"/>
 		<antcall target="tomcatstart"/>
 	</target>
