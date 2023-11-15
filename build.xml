@@ -23,7 +23,7 @@
 	
 	<target name="copy" depends="clean,init" description="copy intermediate war files">
 		<copy todir="${bin.dir}">
-			<fileset dir="${workspace}\sources">
+			<fileset dir=".">
 				<include name="helloworld.war"/>
 				<include name="Lab6A.war"/>
 			</fileset>
